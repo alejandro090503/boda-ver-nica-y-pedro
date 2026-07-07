@@ -2349,6 +2349,25 @@
     .env-interactive.open~.env-tap-hint{opacity:0;pointer-events:none;}
     @keyframes env-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
 
+    /* ── QUOTE (frases de novios) ── */
+    .quote-section{padding:min(10vh,90px) 24px;text-align:center;background:linear-gradient(180deg,rgba(255,229,241,.25) 0%,rgba(234,254,255,.25) 100%);position:relative;overflow:hidden;}
+    .quote-inner{max-width:640px;margin:0 auto;position:relative;padding:24px 12px;}
+    .quote-mark{font-family:var(--script);font-size:120px;color:var(--accent);opacity:.35;line-height:.4;display:block;height:40px;}
+    .quote-mark.right{transform:rotate(180deg);margin-top:-8px;}
+    .quote-text{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2.4vw,24px);line-height:1.65;color:var(--text);margin:14px auto 22px;max-width:520px;font-weight:400;letter-spacing:.2px;}
+    .quote-author{font-family:var(--script);font-size:clamp(30px,5vw,42px);color:var(--accent);line-height:1;letter-spacing:.5px;}
+    .quote-rule{width:80px;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);margin:20px auto 22px;opacity:.55;}
+
+    /* ── GALLERY WHEEL 3D (drag para girar) ── */
+    #galeria-wheel{padding:72px 20px 80px;background:linear-gradient(180deg,var(--bg) 0%,var(--crema) 100%);text-align:center;overflow:hidden;}
+    #galeria-wheel .label,#galeria-wheel .title,#galeria-wheel .subtitle{padding:0 24px;}
+    .wheel-scene{position:relative;width:100%;height:520px;margin:40px auto 0;perspective:1400px;transform-style:preserve-3d;overflow:visible;}
+    .wheel-ring{position:absolute;width:100%;height:100%;transform-style:preserve-3d;cursor:grab;}
+    .wheel-ring.dragging{cursor:grabbing;}
+    .wheel-card{position:absolute;width:200px;height:280px;left:50%;top:50%;margin-left:-100px;margin-top:-140px;border-radius:18px;overflow:hidden;border:2px solid rgba(255,229,241,.5);box-shadow:0 12px 40px rgba(58,48,40,.2);user-select:none;-webkit-user-select:none;}
+    .wheel-card img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;pointer-events:none;}
+    .gal-hint{font-family:var(--serif);font-style:italic;font-size:14px;font-weight:500;letter-spacing:3px;color:var(--accent);margin-top:24px;opacity:.8;}
+
     /* ── RSVP card (boda-jennifer style) ── */
     .rsvp-corner{position:absolute;width:52px;height:52px;pointer-events:none;}
     .rsvp-corner--tl{top:0;left:0;}
@@ -2872,7 +2891,7 @@
     <section id="hero" aria-label="Portada">
       <!-- Hero con imagen proporcionada por el cliente -->
       <img class="hero-bg" id="hero-bg" aria-hidden="true"
-           src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/150fbe5d-137f-4659-ad69-f19d530b41f1/1782417565130-5.jpeg"
+           src="galeria/foto-1.jpeg"
            alt="" loading="eager" />
       <div class="hero-overlay" aria-hidden="true"></div>
       <div class="hero-vignette" aria-hidden="true"></div>
@@ -2896,6 +2915,16 @@
       <div class="hero-scroll" id="hero-scroll" aria-hidden="true">
         <span>Desliza</span>
         <div class="scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- ── QUOTE — VERÓNICA ─────────────────────────── -->
+    <section class="quote-section" aria-label="Frase de Verónica">
+      <div class="quote-inner">
+        <span class="quote-mark fu">“</span>
+        <p class="quote-text fu">Dada la inmensidad del espacio y el tiempo, es un honor compartir época, lugar y una vida contigo.</p>
+        <div class="quote-rule fu"></div>
+        <p class="quote-author fu">— Verónica</p>
       </div>
     </section>
 
@@ -3438,6 +3467,40 @@
           </svg>
           Ver lista en Liverpool
         </a>
+      </div>
+    </section>
+
+    <!-- ── GALERÍA — RUEDA 3D ───────────────────────── -->
+    <section id="galeria-wheel" aria-label="Galería de fotos">
+      <p class="label fu">Nuestros recuerdos</p>
+      <h2 class="title fu">Momentos <span style="font-family:var(--script);color:var(--accent);font-size:42px;">juntos</span></h2>
+      <div class="gal-header-ornament fu"></div>
+      <div class="wheel-scene rv" id="wheel-scene">
+        <div class="wheel-ring" id="wheel-ring">
+          <div class="wheel-card"><img src="galeria/foto-1.jpeg" alt="Verónica y Pedro" loading="lazy" /></div>
+          <div class="wheel-card"><img src="galeria/foto-2.jpeg" alt="Verónica y Pedro" loading="lazy" /></div>
+          <div class="wheel-card"><img src="galeria/foto-3.jpeg" alt="Verónica y Pedro" loading="lazy" /></div>
+          <div class="wheel-card"><img src="galeria/foto-4.jpeg" alt="Verónica y Pedro" loading="lazy" /></div>
+          <div class="wheel-card"><img src="galeria/foto-5.jpeg" alt="Verónica y Pedro" loading="lazy" /></div>
+          <div class="wheel-card"><img src="galeria/foto-6.jpeg" alt="Verónica y Pedro" loading="lazy" /></div>
+          <div class="wheel-card"><img src="galeria/foto-7.jpeg" alt="Verónica y Pedro" loading="lazy" /></div>
+          <div class="wheel-card"><img src="galeria/foto-8.jpeg" alt="Verónica y Pedro" loading="lazy" /></div>
+          <div class="wheel-card"><img src="galeria/foto-9.jpeg" alt="Verónica y Pedro" loading="lazy" /></div>
+          <div class="wheel-card"><img src="galeria/foto-10.jpeg" alt="Verónica y Pedro" loading="lazy" /></div>
+          <div class="wheel-card"><img src="galeria/foto-11.jpeg" alt="Verónica y Pedro" loading="lazy" /></div>
+          <div class="wheel-card"><img src="galeria/foto-12.jpeg" alt="Verónica y Pedro" loading="lazy" /></div>
+        </div>
+      </div>
+      <p class="gal-hint rv">Arrastra para girar</p>
+    </section>
+
+    <!-- ── QUOTE — PEDRO ────────────────────────────── -->
+    <section class="quote-section" aria-label="Frase de Pedro">
+      <div class="quote-inner">
+        <span class="quote-mark fu">“</span>
+        <p class="quote-text fu">La unión de dos personas que se aman es lo más fuerte que existe en el mundo.</p>
+        <div class="quote-rule fu"></div>
+        <p class="quote-author fu">— Pedro</p>
       </div>
     </section>
 
@@ -4372,6 +4435,47 @@
     wrapId:'tlWrap', svgId:'tlSvg', pathId:'tlPath', bgId:'tlPathBg',
     rowSelector:'.tl-row', stateKey:'__tlData'
   });
+
+  /* ── GALLERY — 3D WHEEL (drag para girar) ── */
+  (function initWheel(){
+    var ring = document.getElementById('wheel-ring');
+    if (!ring) return;
+    var cards = ring.querySelectorAll('.wheel-card');
+    var n = cards.length;
+    if (!n) return;
+    var radius = 340;
+    var rot = 0, vel = 0, isDrag = false, startX = 0, startRot = 0, lastX = 0, rafId = null;
+
+    cards.forEach(function(card, i){
+      card.style.transform = 'rotateY(' + (360/n*i) + 'deg) translateZ(' + radius + 'px)';
+    });
+
+    function setRot(){ if (window.gsap) gsap.set(ring, {rotateY: rot}); else ring.style.transform = 'rotateY(' + rot + 'deg)'; }
+    setRot();
+
+    function inertia(){
+      if (isDrag) return;
+      rot += vel;
+      vel *= 0.94;
+      setRot();
+      if (Math.abs(vel) > 0.05) rafId = requestAnimationFrame(inertia);
+    }
+    function pointerDown(x){ isDrag = true; ring.classList.add('dragging'); startX = x; lastX = x; startRot = rot; vel = 0; if (rafId) cancelAnimationFrame(rafId); }
+    function pointerMove(x){ if (!isDrag) return; var dx = x - startX; rot = startRot + dx*0.45; vel = (x - lastX)*0.5; lastX = x; setRot(); }
+    function pointerUp(){ if (!isDrag) return; isDrag = false; ring.classList.remove('dragging'); rafId = requestAnimationFrame(inertia); }
+
+    ring.addEventListener('mousedown', function(e){ e.preventDefault(); pointerDown(e.clientX); });
+    window.addEventListener('mousemove', function(e){ pointerMove(e.clientX); });
+    window.addEventListener('mouseup', pointerUp);
+    ring.addEventListener('touchstart', function(e){ pointerDown(e.touches[0].clientX); }, {passive:true});
+    ring.addEventListener('touchmove', function(e){ pointerMove(e.touches[0].clientX); }, {passive:true});
+    ring.addEventListener('touchend', pointerUp);
+
+    var auto = true;
+    (function spin(){ if (auto && !isDrag){ rot += 0.12; setRot(); } requestAnimationFrame(spin); })();
+    ring.addEventListener('mousedown', function(){ auto = false; });
+    ring.addEventListener('touchstart', function(){ auto = false; });
+  })();
 
   /* ── Sobre interactivo — lluvia de sobres ── */
   (function(){
