@@ -2349,6 +2349,25 @@
     .env-interactive.open~.env-tap-hint{opacity:0;pointer-events:none;}
     @keyframes env-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
 
+    /* ── Botón "Ver inspiración" (dress code) ── */
+    .btn-inspiracion{display:inline-flex;align-items:center;gap:10px;margin-top:24px;padding:14px 28px;border-radius:100px;border:1.5px solid var(--accent);background:linear-gradient(135deg,rgba(255,229,241,.5),rgba(234,254,255,.5));color:var(--text);font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;cursor:pointer;transition:transform .25s,box-shadow .25s,background .25s;box-shadow:0 4px 14px rgba(255,229,241,.35);}
+    .btn-inspiracion:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(255,229,241,.5);background:linear-gradient(135deg,rgba(255,229,241,.75),rgba(234,254,255,.75));}
+    .btn-inspiracion:active{transform:scale(.97);}
+    .btn-inspiracion svg{color:var(--accent);}
+
+    /* ── Modal dress code ── */
+    .dc-modal{position:fixed;inset:0;z-index:10000;display:none;align-items:center;justify-content:center;padding:24px;}
+    .dc-modal.is-open{display:flex;animation:dcModalIn .3s ease;}
+    .dc-modal-backdrop{position:absolute;inset:0;background:rgba(58,48,40,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);cursor:pointer;}
+    .dc-modal-content{position:relative;max-width:min(560px,92vw);max-height:88vh;background:var(--bg);border-radius:18px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.35);animation:dcModalPop .35s cubic-bezier(.2,.7,.2,1);}
+    .dc-modal-img{display:block;width:100%;height:auto;max-height:88vh;object-fit:contain;}
+    .dc-modal-close{position:absolute;top:12px;right:12px;width:38px;height:38px;border-radius:50%;border:none;background:rgba(255,255,255,.9);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.25);transition:transform .2s,background .2s;z-index:2;}
+    .dc-modal-close:hover{background:#fff;transform:scale(1.08);}
+    .dc-modal-close:active{transform:scale(.94);}
+    @keyframes dcModalIn{from{opacity:0}to{opacity:1}}
+    @keyframes dcModalPop{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+    body.dc-modal-open{overflow:hidden;}
+
     /* ── QUOTE (frases de novios) ── */
     .quote-section{padding:min(10vh,90px) 24px;text-align:center;background:linear-gradient(180deg,rgba(255,229,241,.25) 0%,rgba(234,254,255,.25) 100%);position:relative;overflow:hidden;}
     .quote-inner{max-width:640px;margin:0 auto;position:relative;padding:24px 12px;}
@@ -2380,6 +2399,17 @@
     .rsvp-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(255,229,241,.2);}
     .rsvp-input::placeholder{color:rgba(58,48,40,.4);font-weight:400;font-style:italic;}
     #rsvp-confirm-btn:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(255,229,241,.4);}
+    .rsvp-asignados{display:flex;flex-direction:column;gap:12px;max-width:460px;margin:0 auto 22px;}
+    .rsvp-person-card{display:flex;flex-direction:column;gap:10px;padding:14px 16px;background:rgba(255,255,255,.72);border:1.5px solid rgba(255,229,241,.4);border-radius:14px;transition:border-color .25s,background .25s;}
+    .rsvp-person-card[data-choice="yes"]{border-color:#4a7848;background:rgba(107,155,100,.10);}
+    .rsvp-person-card[data-choice="no"]{border-color:var(--accent);background:rgba(255,229,241,.22);}
+    .rsvp-person-name{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--text);letter-spacing:.02em;text-align:center;}
+    .rsvp-person-toggle{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+    .rsvp-mini-btn{padding:11px 12px;border:1.5px solid rgba(255,229,241,.4);border-radius:10px;background:rgba(255,255,255,.6);font-family:var(--sans);font-size:12px;font-weight:600;color:var(--text);letter-spacing:.05em;cursor:pointer;transition:all .25s;text-transform:uppercase;-webkit-tap-highlight-color:transparent;min-height:44px;}
+    .rsvp-mini-btn:hover:not(:disabled){border-color:var(--accent);background:rgba(255,255,255,.92);}
+    .rsvp-mini-btn:disabled{opacity:.5;cursor:not-allowed;}
+    .rsvp-mini-yes-on{background:#2F5A28!important;border-color:#2F5A28!important;color:#fff!important;}
+    .rsvp-mini-no-on{background:var(--accent)!important;border-color:var(--accent)!important;color:#fff!important;}
 
     /* ══════════════════════════════════════════════════════
        GIFT HEART — tarjetas de mesa de regalos en corazón
@@ -2946,7 +2976,6 @@
 
       <svg class="rose-watermark md" style="top:6%;left:-30px;transform:rotate(-22deg)" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M50 84 C30 70 10 55 10 34 C10 22 20 13 31 13 C40 13 46 17 50 23 C54 17 60 13 69 13 C80 13 90 22 90 34 C90 55 70 70 50 84 Z"/></svg>
       <svg class="rose-watermark sm" style="bottom:10%;right:-18px;transform:rotate(28deg)" viewBox="0 0 100 100" fill="currentColor" aria-hidden="true"><path d="M50 84 C30 70 10 55 10 34 C10 22 20 13 31 13 C40 13 46 17 50 23 C54 17 60 13 69 13 C80 13 90 22 90 34 C90 55 70 70 50 84 Z"/></svg>
-      <p class="label fu">Faltan</p>
       <h2 class="title fu">Nuestro gran día</h2>
       <p class="subtitle fu">El tiempo vuela cuando esperas algo hermoso</p>
 
@@ -3069,7 +3098,7 @@
               <path d="M16 19 Q15 17 13 18"/>
             </svg>
           </div>
-          <p class="loc-script fu">Ceremonia & Fiesta</p>
+          <p class="loc-script fu">Ceremonia & Recepción</p>
           <p class="loc-eyebrow-v2 fu">todo en un solo lugar</p>
           <h3 class="loc-name-v2 fu">Hacienda de la Barranca</h3>
           <div class="loc-divider-v2 fu">
@@ -3169,31 +3198,55 @@
           <div class="tl-row-inner">
             <p class="tl-t">1:00 PM</p>
             <p class="tl-ev">Ceremonia Religiosa</p>
-            <p class="tl-de">Hacienda de la Barranca</p>
           </div>
         </div>
         <div class="tl-row" data-side="right" role="listitem">
           <div class="tl-orn"></div><div class="tl-pulse"></div><div class="tl-dot"></div>
           <div class="tl-row-inner">
             <p class="tl-t">2:00 PM</p>
-            <p class="tl-ev">Ceremonia Civil</p>
-            <p class="tl-de">Unión legal de Verónica &amp; Pedro</p>
+            <p class="tl-ev">Boda Civil</p>
           </div>
         </div>
         <div class="tl-row" data-side="left" role="listitem">
           <div class="tl-orn"></div><div class="tl-pulse"></div><div class="tl-dot"></div>
           <div class="tl-row-inner">
-            <p class="tl-t">2:30 PM</p>
-            <p class="tl-ev">Cócteles de Bienvenida</p>
-            <p class="tl-de">Brindis con los novios</p>
+            <p class="tl-t">3:00 PM</p>
+            <p class="tl-ev">Recepción</p>
           </div>
         </div>
         <div class="tl-row" data-side="right" role="listitem">
           <div class="tl-orn"></div><div class="tl-pulse"></div><div class="tl-dot"></div>
           <div class="tl-row-inner">
-            <p class="tl-t">3:00 PM</p>
-            <p class="tl-ev">¡Inicia la Fiesta!</p>
-            <p class="tl-de">¡Que comience la celebración!</p>
+            <p class="tl-t">3:30 PM</p>
+            <p class="tl-ev">Comida</p>
+          </div>
+        </div>
+        <div class="tl-row" data-side="left" role="listitem">
+          <div class="tl-orn"></div><div class="tl-pulse"></div><div class="tl-dot"></div>
+          <div class="tl-row-inner">
+            <p class="tl-t">4:30 PM</p>
+            <p class="tl-ev">Primer Baile de Novios</p>
+          </div>
+        </div>
+        <div class="tl-row" data-side="right" role="listitem">
+          <div class="tl-orn"></div><div class="tl-pulse"></div><div class="tl-dot"></div>
+          <div class="tl-row-inner">
+            <p class="tl-t">5:00 PM</p>
+            <p class="tl-ev">¡Todos a Bailar!</p>
+          </div>
+        </div>
+        <div class="tl-row" data-side="left" role="listitem">
+          <div class="tl-orn"></div><div class="tl-pulse"></div><div class="tl-dot"></div>
+          <div class="tl-row-inner">
+            <p class="tl-t">8:00 PM</p>
+            <p class="tl-ev">Mariachi</p>
+          </div>
+        </div>
+        <div class="tl-row" data-side="right" role="listitem">
+          <div class="tl-orn"></div><div class="tl-pulse"></div><div class="tl-dot"></div>
+          <div class="tl-row-inner">
+            <p class="tl-t">9:00 PM</p>
+            <p class="tl-ev">Fin del Evento</p>
           </div>
         </div>
       </div>
@@ -3231,7 +3284,27 @@
       <p class="dc-note fu">Cocktail formal · No tenis</p>
 
       <p class="dc-avoid fu">Por favor evitar el blanco (reservado para la novia)</p>
+
+      <button type="button" id="btn-inspiracion" class="btn-inspiracion fu" aria-label="Ver inspiración cocktail formal">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="2"/>
+          <circle cx="9" cy="9" r="1.5" fill="currentColor" stroke="none"/>
+          <path d="M21 15l-5-5L5 21" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Ver inspiración
+      </button>
     </section>
+
+    <!-- Modal dress code -->
+    <div id="dresscode-modal" class="dc-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Inspiración cocktail formal">
+      <div class="dc-modal-backdrop"></div>
+      <div class="dc-modal-content">
+        <button type="button" class="dc-modal-close" id="dc-modal-close" aria-label="Cerrar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M6 18L18 6"/></svg>
+        </button>
+        <img src="dresscode-imagen.jpeg" alt="Inspiración cocktail formal" class="dc-modal-img" />
+      </div>
+    </div>
 
     <!-- ── 7. FAMILIA ──────────────────────────────── -->
     <section id="familia" aria-label="Familia y padrinos">
@@ -3256,23 +3329,6 @@
         <div class="fam-heading">
           <span class="fam-script">Padres</span>
         </div>
-        <span class="fam-eyebrow fu">del novio</span>
-        <div class="fam-members-v2">
-          <div class="fam-entry fu">
-            <span class="fam-role-v2">papá</span>
-            <span class="fam-name-v2">Pedro Calderón García</span>
-          </div>
-          <div class="fam-entry fu">
-            <span class="fam-role-v2">mamá</span>
-            <span class="fam-name-v2">María de Lourdes Collazo Martínez</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="fam-group-v2 fu">
-        <div class="fam-heading">
-          <span class="fam-script">Padres</span>
-        </div>
         <span class="fam-eyebrow fu">de la novia</span>
         <div class="fam-members-v2">
           <div class="fam-entry fu">
@@ -3282,6 +3338,23 @@
           <div class="fam-entry fu">
             <span class="fam-role-v2">mamá</span>
             <span class="fam-name-v2">María Alejandra Cedano Salcedo</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="fam-group-v2 fu">
+        <div class="fam-heading">
+          <span class="fam-script">Padres</span>
+        </div>
+        <span class="fam-eyebrow fu">del novio</span>
+        <div class="fam-members-v2">
+          <div class="fam-entry fu">
+            <span class="fam-role-v2">papá</span>
+            <span class="fam-name-v2">Pedro Calderón García</span>
+          </div>
+          <div class="fam-entry fu">
+            <span class="fam-role-v2">mamá</span>
+            <span class="fam-name-v2">María de Lourdes Collazo Martínez</span>
           </div>
         </div>
       </div>
@@ -3563,7 +3636,7 @@
           <div class="eyebrow fu" style="font-family:var(--sans);font-size:10px;letter-spacing:4px;text-transform:uppercase;color:rgba(58,48,40,.55);margin-bottom:14px;">Confirmación de asistencia</div>
           <h2 style="font-family:var(--display);font-style:italic;font-size:clamp(32px,4.2vw,52px);color:var(--text);margin-bottom:18px;line-height:1.15;">Tu presencia <em style="color:var(--accent);font-style:italic;">significa</em> todo</h2>
           <p style="font-family:var(--serif);font-size:clamp(15px,1.5vw,17px);color:rgba(58,48,40,.65);line-height:1.85;margin-bottom:36px;font-weight:500;max-width:420px;margin-left:auto;margin-right:auto;">
-            Por favor confírmanos tu asistencia antes del <strong>16 de Octubre de 2026</strong>. Nos encantará saber que estarás con nosotros.
+            Por favor confírmanos tu asistencia antes del <strong>sábado 3 de Octubre de 2026</strong>. Nos encantará saber que estarás con nosotros.
           </p>
 
           <p id="rsvp-name-display" style="display:none;font-family:var(--script);font-size:clamp(30px,7vw,44px);color:var(--accent);line-height:1.2;margin:18px auto 4px;"></p>
@@ -3581,7 +3654,9 @@
             <div id="rsvp-pases-num" style="font-family:var(--display);font-style:italic;font-size:clamp(36px,5vw,52px);color:var(--accent);line-height:1;">1</div>
           </div>
 
-          <div style="display:flex;gap:10px;max-width:420px;margin:0 auto 20px;">
+          <div id="rsvp-asignados" class="rsvp-asignados" style="display:none;"></div>
+
+          <div id="rsvp-toggle-std" style="display:flex;gap:10px;max-width:420px;margin:0 auto 20px;">
             <button class="rsvp-toggle-btn" id="btnYes" type="button" style="flex:1;padding:14px 8px;border:1.5px solid rgba(255,229,241,.35);background:rgba(255,255,255,.6);cursor:pointer;font-family:var(--serif);font-style:italic;font-size:17px;color:var(--text);border-radius:8px;transition:all .25s;">¡Asistiré con gusto!</button>
             <button class="rsvp-toggle-btn" id="btnNo" type="button" style="flex:1;padding:14px 8px;border:1.5px solid rgba(255,229,241,.35);background:rgba(255,255,255,.6);cursor:pointer;font-family:var(--serif);font-style:italic;font-size:17px;color:var(--text);border-radius:8px;transition:all .25s;">No podré asistir</button>
           </div>
@@ -3596,7 +3671,7 @@
 
           <div style="display:inline-flex;align-items:center;gap:8px;margin-top:26px;font-family:var(--sans);font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--accent);padding-left:.4em;font-weight:600;">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5z"/></svg>
-            Fecha límite · 16 Oct 2026
+            Fecha límite · Sáb 3 Oct 2026
           </div>
         </div>
       </div>
@@ -3695,23 +3770,52 @@
   musicBtn.addEventListener('click', function (e) {
     e.preventDefault();
     e.stopPropagation();
-    var isAudible = !bgAudio.paused && bgAudio.volume > 0.02;
-    if (isAudible) {
+    // Fuente de verdad = estado _on (clase is-playing) — evita glitches durante el fade
+    if (_on) {
       setBtnPlaying(false);
-      fadeVolume(0, 800);
+      fadeVolume(0, 600);
     } else {
+      setBtnPlaying(true);
       var p = bgAudio.play();
       if (p && p.then) {
         p.then(function () {
-          setBtnPlaying(true);
-          fadeVolume(0.45, 1200);
-        }).catch(function (err) { console.warn('Audio bloqueado:', err); });
+          fadeVolume(0.45, 900);
+        }).catch(function (err) {
+          setBtnPlaying(false);
+          console.warn('Audio bloqueado:', err);
+        });
       } else {
-        setBtnPlaying(true);
-        fadeVolume(0.45, 1200);
+        fadeVolume(0.45, 900);
       }
     }
   });
+
+  // Sincroniza el botón si el audio se pausa por otro motivo (fin, buffering, etc.)
+  bgAudio.addEventListener('pause', function(){ if (bgAudio.currentTime > 0) setBtnPlaying(false); });
+  bgAudio.addEventListener('play',  function(){ setBtnPlaying(true); });
+
+  /* ── Modal dress code (Ver inspiración) ── */
+  (function(){
+    var btn = document.getElementById('btn-inspiracion');
+    var modal = document.getElementById('dresscode-modal');
+    if (!btn || !modal) return;
+    var closeBtn = modal.querySelector('.dc-modal-close');
+    var backdrop = modal.querySelector('.dc-modal-backdrop');
+    function open(){
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('dc-modal-open');
+    }
+    function close(){
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('dc-modal-open');
+    }
+    btn.addEventListener('click', open);
+    closeBtn.addEventListener('click', close);
+    backdrop.addEventListener('click', close);
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && modal.classList.contains('is-open')) close(); });
+  })();
 
   window.primeMusic = function () {
     if (_on) return;
@@ -3760,7 +3864,7 @@
       var dy=e.changedTouches[0].clientY-sy;
       if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)){go(dx<0?idx+1:idx-1);resetAuto();}
     },{passive:true});
-    function startAuto(){autoTimer=setInterval(function(){go(idx+1);},3500);}
+    function startAuto(){autoTimer=setInterval(function(){go(idx+1);},6500);}
     function resetAuto(){clearInterval(autoTimer);startAuto();}
     go(0);
     ScrollTrigger.create({trigger:'.padrinos-carousel',start:'top 80%',once:true,onEnter:startAuto});
@@ -4493,7 +4597,7 @@
   (function(){
     var PANEL_API = 'https://panel-invitados.vercel.app/api/confirmar';
     var RSVP_URL  = 'https://boda-veronica-y-pedro.vercel.app';
-    var DEADLINE  = new Date(2026, 9, 16, 23, 59, 59, 999);
+    var DEADLINE  = new Date(2026, 9, 3, 23, 59, 59, 999);
     var frozen    = Date.now() > DEADLINE.getTime();
 
     var params    = new URLSearchParams(window.location.search);
@@ -4502,14 +4606,49 @@
     var urlPases  = (isNaN(rawP) || rawP < 1 || rawP > 20) ? 1 : rawP;
 
     var rsvpChoice  = null;
+    var nombresAsignados = [];
+    var asignadosChoices = {};
     var noteEl      = document.getElementById('rsvp-pases-note');
     var pasesNumEl  = document.getElementById('rsvp-pases-num');
     var fieldsEl    = document.getElementById('rsvp-fields');
+    var toggleEl    = document.getElementById('rsvp-toggle-std');
+    var asigEl      = document.getElementById('rsvp-asignados');
     var btnYes      = document.getElementById('btnYes');
     var btnNo       = document.getElementById('btnNo');
     var confirmBtn  = document.getElementById('rsvp-confirm-btn');
     var btnText     = document.getElementById('rsvp-btn-text');
     var feedbackEl  = document.getElementById('rsvp-feedback');
+
+    function renderAsignados(){
+      if (!asigEl) return;
+      asigEl.innerHTML = '';
+      nombresAsignados.forEach(function(nm, idx){
+        var card = document.createElement('div');
+        card.className = 'rsvp-person-card';
+        var choice = asignadosChoices[idx];
+        if (choice) card.setAttribute('data-choice', choice);
+        var name = document.createElement('div');
+        name.className = 'rsvp-person-name';
+        name.textContent = nm;
+        var tog = document.createElement('div');
+        tog.className = 'rsvp-person-toggle';
+        var bY = document.createElement('button');
+        bY.type = 'button';
+        bY.className = 'rsvp-mini-btn' + (choice === 'yes' ? ' rsvp-mini-yes-on' : '');
+        bY.textContent = 'Asistiré';
+        bY.disabled = frozen;
+        bY.addEventListener('click', function(){ if (frozen) return; asignadosChoices[idx] = 'yes'; renderAsignados(); });
+        var bN = document.createElement('button');
+        bN.type = 'button';
+        bN.className = 'rsvp-mini-btn' + (choice === 'no' ? ' rsvp-mini-no-on' : '');
+        bN.textContent = 'No asistiré';
+        bN.disabled = frozen;
+        bN.addEventListener('click', function(){ if (frozen) return; asignadosChoices[idx] = 'no'; renderAsignados(); });
+        tog.appendChild(bY); tog.appendChild(bN);
+        card.appendChild(name); card.appendChild(tog);
+        asigEl.appendChild(card);
+      });
+    }
 
     if (pasesNumEl) pasesNumEl.textContent = urlPases;
 
@@ -4559,6 +4698,39 @@
         .then(function(d){
           if (!d.ok || !d.invitado) return;
           var inv = d.invitado;
+          if (typeof inv.pases === 'number' && inv.pases > 0 && inv.pases <= 20) {
+            urlPases = inv.pases;
+            if (pasesNumEl) pasesNumEl.textContent = urlPases;
+          }
+
+          var tieneAsignados = Array.isArray(inv.nombres_asignados) && inv.nombres_asignados.length > 0;
+          if (tieneAsignados) {
+            nombresAsignados = inv.nombres_asignados.slice();
+            if (toggleEl) toggleEl.style.display = 'none';
+            if (fieldsEl) fieldsEl.style.display = 'none';
+            if (asigEl) asigEl.style.display = 'flex';
+            var confirmadosLower = (inv.nombres_confirmados || []).map(function(s){ return String(s).toLowerCase().trim(); });
+            if (inv.estado === 'confirmado' || inv.estado === 'declino') {
+              nombresAsignados.forEach(function(nm, idx){
+                if (inv.estado === 'declino') {
+                  asignadosChoices[idx] = 'no';
+                } else {
+                  asignadosChoices[idx] = confirmadosLower.indexOf(nm.toLowerCase().trim()) >= 0 ? 'yes' : 'no';
+                }
+              });
+              if (btnText) btnText.textContent = 'Actualizar respuesta';
+              if (feedbackEl) {
+                feedbackEl.style.display = '';
+                feedbackEl.style.color = 'var(--accent)';
+                feedbackEl.textContent = inv.estado === 'confirmado'
+                  ? '¡Ya tienes registrada tu respuesta! Puedes actualizarla.'
+                  : 'Ya tienes registrado que no podrán asistir. Puedes cambiar la respuesta.';
+              }
+            }
+            renderAsignados();
+            return;
+          }
+
           if (inv.estado === 'confirmado') {
             selectRsvp('yes');
             if (btnText) btnText.textContent = 'Actualizar respuesta';
@@ -4587,20 +4759,39 @@
 
     if (confirmBtn) {
       confirmBtn.addEventListener('click', function(){
-        if (!rsvpChoice) {
-          if (feedbackEl) {
-            feedbackEl.textContent = 'Por favor elige si asistirás o no.';
-            feedbackEl.style.display = '';
-            feedbackEl.style.color = 'var(--accent)';
-          }
-          return;
-        }
+        var modoAsignados = nombresAsignados.length > 0;
         var nombres = [];
-        if (rsvpChoice === 'yes' && fieldsEl) {
-          nombres = Array.from(fieldsEl.querySelectorAll('input'))
-            .map(function(i){ return i.value.trim(); })
-            .filter(function(n){ return n.length > 0; });
+        var estadoFinal;
+
+        if (modoAsignados) {
+          var faltantes = nombresAsignados.filter(function(_, i){ return !asignadosChoices[i]; });
+          if (faltantes.length > 0) {
+            if (feedbackEl) {
+              feedbackEl.style.display = '';
+              feedbackEl.style.color = 'var(--accent)';
+              feedbackEl.textContent = 'Por favor responde por cada invitado (' + faltantes.length + ' pendiente' + (faltantes.length === 1 ? '' : 's') + ').';
+            }
+            return;
+          }
+          nombres = nombresAsignados.filter(function(_, i){ return asignadosChoices[i] === 'yes'; });
+          estadoFinal = nombres.length > 0 ? 'confirmado' : 'declino';
+        } else {
+          if (!rsvpChoice) {
+            if (feedbackEl) {
+              feedbackEl.textContent = 'Por favor elige si asistirás o no.';
+              feedbackEl.style.display = '';
+              feedbackEl.style.color = 'var(--accent)';
+            }
+            return;
+          }
+          if (rsvpChoice === 'yes' && fieldsEl) {
+            nombres = Array.from(fieldsEl.querySelectorAll('input'))
+              .map(function(i){ return i.value.trim(); })
+              .filter(function(n){ return n.length > 0; });
+          }
+          estadoFinal = rsvpChoice === 'yes' ? 'confirmado' : 'declino';
         }
+
         var nombre = urlPara || (nombres[0] || '');
         if (!nombre) {
           if (feedbackEl) {
@@ -4618,9 +4809,9 @@
           body: JSON.stringify({
             nombre: nombre,
             url_boda: RSVP_URL,
-            estado: rsvpChoice === 'yes' ? 'confirmado' : 'declino',
-            pases_confirmados: rsvpChoice === 'yes' ? (nombres.length || urlPases) : 0,
-            nombres_confirmados: rsvpChoice === 'yes' ? nombres : []
+            estado: estadoFinal,
+            pases_confirmados: estadoFinal === 'confirmado' ? nombres.length : 0,
+            nombres_confirmados: estadoFinal === 'confirmado' ? nombres : []
           })
         })
         .then(function(r){ return r.json(); })
@@ -4629,10 +4820,14 @@
           if (btnText) btnText.textContent = 'Actualizar respuesta';
           if (feedbackEl) {
             feedbackEl.style.display = '';
-            feedbackEl.style.color = rsvpChoice === 'yes' ? '#2F5A28' : 'var(--accent)';
-            feedbackEl.textContent = rsvpChoice === 'yes'
-              ? '¡Gracias! Tu asistencia ha sido confirmada.'
-              : 'Respuesta guardada. ¡Gracias por avisarnos!';
+            feedbackEl.style.color = estadoFinal === 'confirmado' ? '#2F5A28' : 'var(--accent)';
+            if (estadoFinal === 'confirmado') {
+              feedbackEl.textContent = nombres.length === 1
+                ? '¡Confirmado para ' + nombres[0] + '! Nos vemos pronto.'
+                : '¡Confirmado para ' + nombres.length + ' invitados! Nos vemos pronto.';
+            } else {
+              feedbackEl.textContent = 'Respuesta guardada. ¡Gracias por avisarnos!';
+            }
           }
         })
         .catch(function(){
